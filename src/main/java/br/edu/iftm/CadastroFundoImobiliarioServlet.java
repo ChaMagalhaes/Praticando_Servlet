@@ -58,13 +58,12 @@ public class CadastroFundoImobiliarioServlet extends HttpServlet {
                     "<table border='1'><tr><th>ID</th><th>Nome</th><th>Setor</th><th>Preço</th><th>Data IPO</th><th>Ações</th></tr>");
 
             while (rs.next()) {
-               //TODO: busca os campos da table do banco para monta a tabela no html na lista dos fii
 
                 int id = rs.getInt("id");
                 String nome = rs.getString("nome");
                 String setor = rs.getString("setor");
-                String dataFormatada = DateFormat.getDateInstance().format(rs.getDate("data_ipo"));
                 BigDecimal preco = rs.getBigDecimal("preco");
+                String dataFormatada = DateFormat.getDateInstance().format(rs.getDate("data_ipo"));
 
                 out.println("<tr><td>" + id + "</td><td>" + nome + "</td><td>" + setor + "</td><td>" + preco
                         + "</td><td>" + dataFormatada + "</td>");
@@ -99,13 +98,23 @@ public class CadastroFundoImobiliarioServlet extends HttpServlet {
         if ("excluir".equals(acao)) {
             String idStr = request.getParameter("id");
             if (idStr != null && !idStr.trim().isEmpty()) {
-                /*try {
-                     //TODO: Pega o id vindo na requisição e exclui no banco de dados. 
+                try {
+
+                    Class.forName("com.mysql.cj.jdbc.Driver");
+                    Connection conn = DatabaseConnection.getConnection();
+
+                    int id = Integer.parseInt(idStr);
+
+                    PreparedStatement pstmt = conn.prepareStatement("DELETE FROM fundos_imobiliarios WHERE id = ?");
+                    pstmt.setInt(1, id);
+                    pstmt.executeUpdate();
+                    response.sendRedirect("fii");
+
                    
                 } catch (SQLException | ClassNotFoundException | NumberFormatException e) {
                     out.println("<div class='error-message'>Erro ao excluir fundo: " + e.getMessage() + "</div>");
                     e.printStackTrace();
-                }*/
+                }
             }
 
         } else if("cadastrar".equals(acao)) {
