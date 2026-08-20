@@ -2,10 +2,12 @@ package br.edu.iftm;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -58,11 +60,17 @@ public class CadastroFundoImobiliarioServlet extends HttpServlet {
             while (rs.next()) {
                //TODO: busca os campos da table do banco para monta a tabela no html na lista dos fii
 
-                /*out.println("<tr><td>" + id + "</td><td>" + nome + "</td><td>" + setor + "</td><td>" + preco
-                        + "</td><td>" + dataFormatada + "</td>");*/
+                int id = rs.getInt("id");
+                String nome = rs.getString("nome");
+                String setor = rs.getString("setor");
+                String dataFormatada = DateFormat.getDateInstance().format(rs.getDate("data_ipo"));
+                BigDecimal preco = rs.getBigDecimal("preco");
+
+                out.println("<tr><td>" + id + "</td><td>" + nome + "</td><td>" + setor + "</td><td>" + preco
+                        + "</td><td>" + dataFormatada + "</td>");
                 out.println("<td><form method='post' action='fii'>");
                 out.println("<input type='hidden' name='acao' value='excluir'>");
-                //out.println("<input type='hidden' name='id' value='" + id + "'>");
+                out.println("<input type='hidden' name='id' value='" + id + "'>");
                 out.println("<input type='submit' value='Excluir'>");
                 out.println("</form></td></tr>");
             }
