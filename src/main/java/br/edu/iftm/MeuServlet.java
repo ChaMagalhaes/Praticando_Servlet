@@ -16,7 +16,7 @@ public class MeuServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>Olá do Meu Servlet!</h1>");
+        out.println("<a href='index.html'>Início</a>");
         out.println("</body></html>");
-        //cria um link para a página de login
     }
 }

@@ -120,8 +120,10 @@ public class CadastroFundoImobiliarioServlet extends HttpServlet {
         } else if("cadastrar".equals(acao)) {
 
             String nome = request.getParameter("nome");
-            //TODO: buscar os demais campos vindos do formulário de cadastro. 
-            /*
+            String setor = request.getParameter("setor");
+            String precoStr = request.getParameter("preco");
+            String dataIpoStr = request.getParameter("data_ipo");
+
             if (nome == null || nome.trim().isEmpty() || setor == null || setor.trim().isEmpty() ||
                     precoStr == null || precoStr.trim().isEmpty() || dataIpoStr == null
                     || dataIpoStr.trim().isEmpty()) {
@@ -129,9 +131,9 @@ public class CadastroFundoImobiliarioServlet extends HttpServlet {
                 return;
             }
 
-            double preco;
+            BigDecimal preco;
             try {
-                preco = Double.parseDouble(precoStr);
+                preco = BigDecimal.valueOf(Double.parseDouble(precoStr));
             } catch (NumberFormatException e) {
                 out.println("<div class='error-message'>Preço inválido.</div>");
                 return;
@@ -147,12 +149,22 @@ public class CadastroFundoImobiliarioServlet extends HttpServlet {
             }
 
             try {
-                //TODO: Conecta com o banco, monta a query de insert e executa. 
+
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement("INSERT INTO fundos_imobiliarios " +
+                        "(nome, setor, preco, data_ipo) VALUES (?, ?, ?, ?)");
+
+                pstmt.setString(1, nome);
+                pstmt.setString(2, setor);
+                pstmt.setBigDecimal(3, preco);
+                pstmt.setDate(4, new java.sql.Date(dataIpo.getTime()));
+                pstmt.executeUpdate();
                 response.sendRedirect("fii");
             } catch (SQLException | ClassNotFoundException e) {
                 out.println("<div class='error-message'>Erro ao cadastrar fundo: " + e.getMessage() + "</div>");
                 e.printStackTrace();
-            }*/
+            }
         }
     }
 }

@@ -7,10 +7,9 @@
     <list default="true" id="ea6c33e1-c35a-47fb-b652-da86fd7b4af6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iftm/CadastroFundoImobiliarioServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iftm/CadastroFundoImobiliarioServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/meuservlet.war" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/meuservlet/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/meuservlet/index.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iftm/LoginServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iftm/LoginServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iftm/LogoutServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iftm/LogoutServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/edu/iftm/MeuServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/edu/iftm/MeuServlet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

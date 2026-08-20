@@ -14,9 +14,9 @@ import br.edu.iftm.model.User;
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String usuarioParam = request.getParameter("usuario");
         String senhaParam = request.getParameter("senha");
 
@@ -24,10 +24,11 @@ public class LoginServlet extends HttpServlet {
 
         if (userDAO.validar(usuarioParam, senhaParam)) {
             // Se as credenciais são válidas, cria uma sessão
-            // cria uma sessão, atribui um valor 
+            HttpSession session = request.getSession();
+            session.setAttribute("usuarioLogado", usuarioParam);
             response.sendRedirect("fii");
         } else {
-             response.sendRedirect("login.html");
+            response.sendRedirect("login.html");
         }
     }
 }
